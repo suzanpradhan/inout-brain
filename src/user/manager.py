@@ -18,6 +18,7 @@ class CustomAccountManager(BaseUserManager):
             email=email,
             username=username,
             password=password,
+            is_superuser=True,
             **extra_fields,
         )
         user.is_staff = True

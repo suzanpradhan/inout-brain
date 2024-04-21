@@ -64,6 +64,7 @@ THIRD_PARTY_APPS = [
     "django_extensions",
     "rest_framework",
     "drf_yasg",
+    'rest_framework_swagger',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + SDK_APPS + LOCAL_APPS + THIRD_PARTY_APPS
