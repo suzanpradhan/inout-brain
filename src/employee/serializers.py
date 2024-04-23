@@ -3,7 +3,7 @@ from rest_framework import serializers
 from src.employee.models import Employee, Position
 
 
-class PositionSerializer(serializers.Serializer):
+class PositionSerializer(serializers.ModelSerializer):
     """
     Serializer for Profile
     """
@@ -16,7 +16,8 @@ class PositionSerializer(serializers.Serializer):
         model = Position
         fields = "__all__"
 
-class EmployeeSerializer(serializers.Serializer):
+
+class EmployeeSerializer(serializers.ModelSerializer):
     """
     Serializer for Profile
     """
@@ -28,3 +29,4 @@ class EmployeeSerializer(serializers.Serializer):
 
         model = Employee
         fields = "__all__"
+        depth = 1
