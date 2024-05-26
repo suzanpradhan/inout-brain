@@ -56,7 +56,7 @@ DEFAULT_APPS = [
 
 SDK_APPS = []
 
-LOCAL_APPS = ["src.core", "src.user", "src.employee"]
+LOCAL_APPS = ["src.core", "src.user", "src.employee", "src.general"]
 
 THIRD_PARTY_APPS = [
     "corsheaders",
