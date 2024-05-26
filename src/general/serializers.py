@@ -15,3 +15,17 @@ class IsDataUpdatedSerializer(serializers.ModelSerializer):
 
         model = General
         fields = ("is_data_updated",)
+
+
+class GeneralSerializer(serializers.ModelSerializer):
+    """
+    Serializer for General
+    """
+
+    class Meta:
+        """
+        Meta Class
+        """
+
+        model = General
+        fields = "__all__"
