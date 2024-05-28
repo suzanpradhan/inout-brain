@@ -7,7 +7,7 @@ urlpatterns = [
     path("is-data-updated", apis.GetIsUpdatedAPI.as_view(), name="get_is_data_updated"),
     path(
         "general",
-        apis.GeneralAPISet.as_view({"get": "list"}),
+        apis.GeneralAPISet.as_view({"get": "retrieve"}),
         name="get_general",
     ),
     path(
