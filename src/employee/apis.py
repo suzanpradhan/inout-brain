@@ -13,7 +13,6 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 
     serializer_class = EmployeeSerializer
     queryset = Employee.objects.all()
-    pagination_class = None
     permission_classes = [IsAuthenticated]
     lookup_field = "pk"
     http_method_names = ("get", "post", "patch", "delete")
