@@ -30,3 +30,15 @@ class EmployeeSerializer(serializers.ModelSerializer):
         model = Employee
         fields = "__all__"
         depth = 1
+
+
+class EmployeeOrderSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=True)
+    order = serializers.IntegerField(required=True)
+    """
+    Serializer for Employee Order
+    """
+
+    class Meta:
+        model = Employee
+        fields = ("id", "order")
