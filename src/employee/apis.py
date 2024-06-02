@@ -50,3 +50,9 @@ class EmployeeViewSet(viewsets.ModelViewSet):
             Employee.objects.bulk_update(employees_obj_for_update, ["order"])
 
         return Response({"status": "Order updated"})
+
+    @action(detail=False, methods=["get"])
+    def all(self, request):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
