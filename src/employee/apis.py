@@ -16,7 +16,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     """
 
     serializer_class = EmployeeSerializer
-    queryset = Employee.objects.all()
+    queryset = Employee.objects.all().order_by("order")
     permission_classes = [IsAuthenticated]
     lookup_field = "pk"
     http_method_names = ("get", "post", "patch", "delete")
