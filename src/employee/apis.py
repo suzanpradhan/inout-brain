@@ -30,6 +30,11 @@ class EmployeeViewSet(viewsets.ModelViewSet):
         General.objects.all().update(is_data_updated=False)
         return super().list(request, *args, **kwargs)
 
+    @action(detail=True, methods=["patch"])
+    def refresh(self, request, *args, **kwargs):
+        General.objects.all().update(is_data_updated=True)
+        return self.partial_update(request, *args, **kwargs)
+
     @swagger_auto_schema(
         method="patch",
         request_body=EmployeeOrderSerializer(many=True),
@@ -48,6 +53,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
                 employees_obj_for_update.append(employee)
 
             Employee.objects.bulk_update(employees_obj_for_update, ["order"])
+            General.objects.all().update(is_data_updated=True)
 
         return Response({"status": "Order updated"})
 
