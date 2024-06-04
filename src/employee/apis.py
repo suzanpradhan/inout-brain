@@ -6,7 +6,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from src.employee.models import Employee
-from src.employee.serializers import EmployeeOrderSerializer, EmployeeSerializer
+from src.employee.serializers import (EmployeeOrderSerializer,
+                                      EmployeeSerializer)
 from src.general.models import General
 
 
@@ -26,9 +27,10 @@ class EmployeeViewSet(viewsets.ModelViewSet):
             return EmployeeOrderSerializer
         return super().get_serializer_class()
 
-    def list(self, request, *args, **kwargs):
+    @action(detail=False, methods=["get"])
+    def realtime(self, request, *args, **kwargs):
         General.objects.all().update(is_data_updated=False)
-        return super().list(request, *args, **kwargs)
+        return self.list(request, *args, **kwargs)
 
     @action(detail=True, methods=["patch"])
     def refresh(self, request, *args, **kwargs):
