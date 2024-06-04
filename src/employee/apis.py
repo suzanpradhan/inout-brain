@@ -6,8 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from src.employee.models import Employee
-from src.employee.serializers import (EmployeeOrderSerializer,
-                                      EmployeeSerializer)
+from src.employee.serializers import EmployeeOrderSerializer, EmployeeSerializer
 from src.general.models import General
 
 
@@ -35,7 +34,9 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=["patch"])
     def refresh(self, request, *args, **kwargs):
         General.objects.all().update(is_data_updated=True)
-        return self.partial_update(request, *args, **kwargs)
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
     @swagger_auto_schema(
         method="patch",
