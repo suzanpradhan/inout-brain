@@ -29,14 +29,14 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=["get"])
     def realtime(self, request, *args, **kwargs):
         General.objects.all().update(is_data_updated=False)
-        return self.list(request, *args, **kwargs)
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
     @action(detail=True, methods=["patch"])
     def refresh(self, request, *args, **kwargs):
         General.objects.all().update(is_data_updated=True)
-        queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+        return self.partial_update(request, *args, **kwargs)
 
     @swagger_auto_schema(
         method="patch",
