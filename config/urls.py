@@ -49,6 +49,7 @@ api_v1_urlpatterns = [
     path("", include("src.core.urls")),
     path("", include("src.employee.urls")),
     path("", include("src.general.urls")),
+    path("", include("src.member.urls")),
 ]
 
 urlpatterns = [
